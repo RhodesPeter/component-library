@@ -1,23 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom';
+import App from './App';
 
-const MyFirstComponent = () => {
-  return (
-    <div id="my-first-component">
-      <MyTitle title="one" color="yellow"/>
-      <MyTitle title="two" color="green"/>
-      <MyTitle title="three" color="yellowGreen"/>
-      <MyTitle title="four" color="greenYellow"/>
-    </div>
-  )
+const renderApp = () => {
+  render(<App />, document.getElementById('app'));
 };
+renderApp();
 
-const MyTitle = function(props) {
-  return (
-    <div>
-      <h1 style={ {color: props.color} }>{props.title}</h1>
-    </div>
-  );
-};
-
-render(<MyFirstComponent/>, document.getElementById('app'));
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    renderApp();
+  });
+}

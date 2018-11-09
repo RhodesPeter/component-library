@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import FourOhFour from './components/404';
-import Homepage from './components/Homepage';
-import About from './components/About';
+import FourOhFour from './pages/404';
+import Homepage from './pages/Homepage';
+import About from './pages/About';
 
 const App = () => (
   <BrowserRouter>

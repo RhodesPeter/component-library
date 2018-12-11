@@ -4,6 +4,8 @@ import styled from 'styled-components';
 const Card = styled.div`
   grid-column-start: 5;
   grid-column-end: 8;
+  grid-row-start: 2;
+  grid-row-end: 5;
   perspective: 1000px;
 `;
 

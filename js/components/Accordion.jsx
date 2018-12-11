@@ -5,6 +5,8 @@ import AccordionPanel from './AccordionPanel';
 const AccordionWrapper = styled.div`
   grid-column-start: 2;
   grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 4;
 `;
 
 const AccordionTitle = styled.h2`

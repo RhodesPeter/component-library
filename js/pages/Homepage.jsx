@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Accordion from '../components/Accordion';
 import InformationCard from '../components/InformationCard';
+import ResponsiveButton from '../components/ResponsiveButton';
 
 const Wrapper = styled.div`
   background-color: #1a1110;
@@ -29,6 +30,7 @@ const Homepage = () => (
     <H1>COMPONENT LIBRARY</H1>
     <Accordion />
     <InformationCard />
+    <ResponsiveButton />
   </Wrapper>
 );
 

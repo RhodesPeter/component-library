@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const PanelWrapper = styled.div`
   border-bottom: 2px solid #DC143C;
+  box-shadow: 0px 5px 13px -1px rgba(0,0,0,0.20);
 
   &:first-of-type {
     Button {
@@ -35,7 +36,8 @@ const Button = styled.button`
   transition: background-color 0.3s ease;
   position: relative;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: #ccc;
   }
 
@@ -57,7 +59,6 @@ const Button = styled.button`
 const Panel = styled.div`
   max-height: ${props => (props.isOpen ? '190px;' : '0')};
   padding: 0 18px;
-  background-color: white;
   overflow: hidden;
   transition: max-height 0.5s ease;
 `;

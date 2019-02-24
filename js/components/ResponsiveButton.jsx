@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const ButtonWrapper = styled.div`
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 5;
-  grid-row-end: 6;
+  display: inline-block;
 `;
 
 const ButtonTitle = styled.h2`

@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const Card = styled.div`
-  grid-column-start: 5;
-  grid-column-end: 8;
-  grid-row-start: 2;
-  grid-row-end: 5;
+  display: inline-block;
   perspective: 1000px;
+  width: 300px;
+  margin-right: 32px;
 `;
 
 const CardInner = styled.div`
@@ -17,6 +16,7 @@ const CardInner = styled.div`
 `;
 
 const CardBodyFront = styled.div`
+  box-shadow: 0px 5px 13px -1px rgba(0,0,0,0.20);
   position: absolute;
   backface-visibility: hidden;
 `;
@@ -114,8 +114,7 @@ class InformationCard extends Component {
               <CardHeader>Lorem Ipsum</CardHeader>
               <CardParagraph>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris.
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </CardParagraph>
               <CardButton onClick={this.flipCard}>Details</CardButton>
             </CardInformationFront>
@@ -136,10 +135,6 @@ class InformationCard extends Component {
                 <li>Nostrud exercitation ullamco</li>
                 <li>Lorem ipsum dolor sit amet</li>
                 <li>Ut enim ad minim veniam</li>
-                <li>Incididunt ut labore et dolore</li>
-                <li>Consectetur adipisicing elit</li>
-                <li>Nostrud exercitation ullamco</li>
-                <li>Consectetur adipisicing elit</li>
               </ul>
               <CardButton onClick={this.flipCard}>
                 {this.state.cardFlipped ? 'Back' : 'Details'}

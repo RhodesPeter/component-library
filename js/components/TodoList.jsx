@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import formatDate from '../scripts/formatDate';
+import getTime from '../scripts/getTime';
 
 const TodoWrapper = styled.div`
   margin-right: 32px;
@@ -79,8 +80,11 @@ class TodoList extends Component {
   constructor(...args) {
     super(...args);
     this.handleAddItemClick = this.handleAddItemClick.bind(this);
+    this.handleAddTaskClick = this.handleAddTaskClick.bind(this);
+    this.updateInputValue = this.updateInputValue.bind(this);
     this.state = {
       inputActive: false,
+      inputValue: '',
       tasks: [{
         name: 'Go to lunch',
         id: 0,
@@ -93,7 +97,19 @@ class TodoList extends Component {
 
   handleAddItemClick() {
     this.setState({ inputActive: true });
-    // this.setState({ tasks: [...this.state.tasks, { name: 'Eat breakfast', id: 3 }] });
+  }
+
+  handleAddTaskClick() {
+    const key = getTime();
+    const value = this.state.inputValue;
+
+    if (value.length > 0) {
+      this.setState({ tasks: [...this.state.tasks, { name: value, id: key }] });
+    }
+  }
+
+  updateInputValue(event) {
+    this.setState({ inputValue: event.target.value });
   }
 
   render() {
@@ -107,8 +123,12 @@ class TodoList extends Component {
           </TopWrapper>
           <TaskCount>{taskCount(this.state.tasks)}</TaskCount>
           <InputWrapper active={this.state.inputActive}>
-            <TodoInput active={this.state.inputActive} />
-            <AddTaskButton>Add task</AddTaskButton>
+            <TodoInput
+              active={this.state.inputActive}
+              onChange={this.updateInputValue}
+              onSubmit={this.handleAddTaskClick}
+            />
+            <AddTaskButton onClick={this.handleAddTaskClick}>Add task</AddTaskButton>
           </InputWrapper>
           <ul>
             { this.state.tasks.map(task => <li key={task.id}>{ task.name }</li>) }

@@ -6,6 +6,7 @@ const Card = styled.div`
   perspective: 1000px;
   width: 300px;
   margin-right: 32px;
+  min-height: 450px;
 `;
 
 const CardInner = styled.div`
@@ -22,6 +23,7 @@ const CardBodyFront = styled.div`
 `;
 
 const CardBodyBack = styled.div`
+  box-shadow: 0px 5px 13px -1px rgba(0,0,0,0.20);
   color: white;
   transform: rotateY(180deg);
   position: relative;
@@ -133,8 +135,10 @@ class InformationCard extends Component {
                 <li>Incididunt ut labore et dolore</li>
                 <li>Consectetur adipisicing elit</li>
                 <li>Nostrud exercitation ullamco</li>
-                <li>Lorem ipsum dolor sit amet</li>
                 <li>Ut enim ad minim veniam</li>
+                <li>Incididunt ut labore et dolore</li>
+                <li>Consectetur adipisicing elit</li>
+                <li>Nostrud exercitation ullamco</li>
               </ul>
               <CardButton onClick={this.flipCard}>
                 {this.state.cardFlipped ? 'Back' : 'Details'}

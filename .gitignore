@@ -1,3 +1,5 @@
 public/bundle.js
 node_modules
 .DS_Store
+*.hot-update.json
+*.hot-update.js

@@ -4,6 +4,7 @@ import TopNav from '../components/TopNav';
 import Accordion from '../components/Accordion';
 import InformationCard from '../components/InformationCard';
 import TodoList from '../components/TodoList';
+import SearchCard from '../components/SearchCard';
 
 const Wrapper = styled.div`
   -webkit-font-smoothing: antialiased;
@@ -27,6 +28,7 @@ const Homepage = () => (
       <TodoList />
       <InformationCard />
       <Accordion />
+      <SearchCard />
     </Components>
   </Wrapper>
 );

@@ -20,6 +20,9 @@ module.exports = {
     publicPath: '/public/',
     historyApiFallback: true,
   },
+  node: {
+    fs: 'empty',
+  },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
   },

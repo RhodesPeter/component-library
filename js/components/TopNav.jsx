@@ -37,7 +37,7 @@ const StyledLink = styled(Link)`
   color: white;
   font-weight: bold;
   text-decoration: none;
-  box-shadow: ${props => (props.to === window.location.pathname ? '0px 3px 0px white' : 'none')};
+  box-shadow: ${props => (props.to === window.location.pathname ? '0px 2px 0px white' : 'none')};
   line-height: 1;
   padding-bottom: 2px;
 `;

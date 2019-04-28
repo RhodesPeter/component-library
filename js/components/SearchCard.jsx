@@ -105,15 +105,21 @@ class SearchCard extends Component {
   constructor(...args) {
     super(...args);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleBackToSearch = this.handleBackToSearch.bind(this);
     this.state = {
       searchActive: true,
       gifUrl: '',
+      searchQuery: '',
+      filters: [],
     };
   }
 
   handleSubmit() {
-    getGif().then((res) => {
+    const searchQuery = `${this.state.searchQuery} ${this.state.filters.join(' ')}`;
+
+    getGif(searchQuery).then((res) => {
       this.setState({ gifUrl: res.data.data[0].images.original.url });
     });
 
@@ -121,7 +127,21 @@ class SearchCard extends Component {
   }
 
   handleBackToSearch() {
-    this.setState({ searchActive: true });
+    this.setState({
+      searchActive: true,
+      filters: [],
+    });
+  }
+
+  handleSearchChange(event) {
+    this.setState({ searchQuery: event.target.value });
+  }
+
+  handleChange(event) {
+    if (!this.state.filters.includes(event.target.value)) {
+      const selectedCheckboxes = [...this.state.filters, event.target.value];
+      this.setState({ filters: selectedCheckboxes });
+    }
   }
 
   render() {
@@ -129,29 +149,29 @@ class SearchCard extends Component {
 
     if (this.state.searchActive) {
       cardContent = (
-        <div>
-          <SearchInput placeholder="Search Gif" type="text" />
+        <form>
+          <SearchInput placeholder="Search Gif" type="text" onChange={this.handleSearchChange} />
 
-          <Checkbox id="1" type="checkbox" name="vehicle1" value="Bike" />
+          <Checkbox id="1" type="checkbox" name="vehicle1" value="Bike" onChange={this.handleChange} />
           <CheckboxLabel htmlFor="1">Bike</CheckboxLabel>
 
-          <Checkbox id="2" type="checkbox" name="vehicle2" value="Car" />
+          <Checkbox id="2" type="checkbox" name="vehicle2" value="Car" onChange={this.handleChange} />
           <CheckboxLabel htmlFor="2">Car</CheckboxLabel>
 
-          <Checkbox id="3" type="checkbox" name="vehicle3" value="Boat" />
+          <Checkbox id="3" type="checkbox" name="vehicle3" value="Boat" onChange={this.handleChange} />
           <CheckboxLabel htmlFor="3">Boat</CheckboxLabel>
 
-          <Checkbox id="4" type="checkbox" name="vehicle1" value="Ship" />
+          <Checkbox id="4" type="checkbox" name="vehicle1" value="Ship" onChange={this.handleChange} />
           <CheckboxLabel htmlFor="4">Ship</CheckboxLabel>
 
-          <Checkbox id="5" type="checkbox" name="vehicle2" value="Plane" />
+          <Checkbox id="5" type="checkbox" name="vehicle2" value="Plane" onChange={this.handleChange} />
           <CheckboxLabel htmlFor="5">Plane</CheckboxLabel>
 
-          <Checkbox id="6" type="checkbox" name="vehicle3" value="Skateboard" />
+          <Checkbox id="6" type="checkbox" name="vehicle3" value="Skateboard" onChange={this.handleChange} />
           <CheckboxLabel htmlFor="6">Skateboard</CheckboxLabel>
 
-          <CardButton onClick={this.handleSubmit}>Search</CardButton>
-        </div>
+          <CardButton type="submit" onClick={this.handleSubmit}>Search</CardButton>
+        </form>
       );
     } else {
       cardContent = (

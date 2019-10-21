@@ -5,6 +5,8 @@ import Accordion from '../components/Accordion';
 import InformationCard from '../components/InformationCard';
 import TodoList from '../components/TodoList';
 import SearchCard from '../components/SearchCard';
+import Carousel from '../components/Carousel';
+import WeatherCard from '../components/WeatherCard';
 
 const Wrapper = styled.div`
   -webkit-font-smoothing: antialiased;
@@ -29,6 +31,8 @@ const Homepage = () => (
       <InformationCard />
       <Accordion />
       <SearchCard />
+      <Carousel />
+      <WeatherCard />
     </Components>
   </Wrapper>
 );

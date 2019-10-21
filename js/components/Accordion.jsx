@@ -4,6 +4,9 @@ import AccordionPanel from './AccordionPanel';
 
 const AccordionWrapper = styled.div`
   width: 300px;
+  margin-left: 32px;
+  margin-right: 32px;
+  margin-bottom: 32px;
 `;
 
 const AccordionTitle = styled.h2`

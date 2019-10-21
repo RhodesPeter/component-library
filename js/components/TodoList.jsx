@@ -4,7 +4,9 @@ import formatDate from '../scripts/formatDate';
 import getTime from '../scripts/getTime';
 
 const TodoWrapper = styled.div`
+  margin-left: 32px;
   margin-right: 32px;
+  margin-bottom: 32px;
   width: 300px;
 `;
 

@@ -6,8 +6,9 @@ const Card = styled.div`
   display: inline-block;
   perspective: 1000px;
   width: 300px;
+  margin-left: 32px;
   margin-right: 32px;
-  min-height: 450px;
+  margin-bottom: 32px;
 `;
 
 const CardInner = styled.div`

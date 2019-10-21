@@ -5,7 +5,7 @@ const Card = styled.div`
   width: 300px;
   margin-left: 32px;
   margin-right: 32px;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 `;
 
 const CardInner = styled.div`
@@ -26,13 +26,6 @@ const CardFront = styled.div`
   font-size: 15px;
   color: #444;
   border-radius: 3px;
-
-  input {
-    background-color: #eee;
-    border: 0;
-    width: 100%;
-    border-bottom: 2px solid #E0E0E0;
-  }
 `;
 
 const MountainsImg = styled.img`
@@ -45,7 +38,7 @@ const MountainsImg = styled.img`
 const Dot = styled.button`
   height: ${props => (props.isActive ? '24px' : '16px')};
   width: ${props => (props.isActive ? '24px' : '16px')};
-  background-color: red;
+  background-color: #877eea;
   border-radius: 50%;
   margin-right: 8px;
   border: none;

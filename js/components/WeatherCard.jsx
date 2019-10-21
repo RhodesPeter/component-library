@@ -5,7 +5,7 @@ const Card = styled.div`
   width: 300px;
   margin-left: 32px;
   margin-right: 32px;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 `;
 
 const CardTitle = styled.h2`
@@ -26,13 +26,6 @@ const CardFront = styled.div`
   font-size: 15px;
   color: #444;
   border-radius: 3px;
-
-  input {
-    background-color: #eee;
-    border: 0;
-    width: 100%;
-    border-bottom: 2px solid #E0E0E0;
-  }
 `;
 
 const CardTop = styled.div`
@@ -40,10 +33,29 @@ const CardTop = styled.div`
   padding-top: 56.25%;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
+  position: relative;
+
+  &:after {
+    background: no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23eee' fill-opacity='1' d='M0,224L120,229.3C240,235,480,245,720,229.3C960,213,1200,171,1320,149.3L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: 100%;
+    background-position: left bottom;
+    position: absolute;
+    content: '';
+    height: 40px;
+    width: 100%;
+    bottom: -2px;
+    left: 0;
+  }
 `;
 
 const Day = styled.div`
-  padding: 16px;
+  padding: 16px 0;
+  margin: 0 16px;
+  border-bottom: 1px solid #877eea;
+
+  &:last-child {
+    border: 0;
+  }
 `;
 
 const WeatherCard = () => (
@@ -55,6 +67,7 @@ const WeatherCard = () => (
         <Day>Monday</Day>
         <Day>Tuesday</Day>
         <Day>Wednesday</Day>
+        <Day>Thursday</Day>
       </CardFront>
     </CardInner>
   </Card>

@@ -6,7 +6,7 @@ import getTime from '../scripts/getTime';
 const TodoWrapper = styled.div`
   margin-left: 32px;
   margin-right: 32px;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
   width: 300px;
 `;
 
@@ -30,7 +30,7 @@ const AddItemButton = styled.button`
   background: blue url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23FFF' viewBox='0 0 24 24'%3E%3Cpath d='M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z'/%3E%3C/svg%3E") no-repeat center/10px;
   width: 32px;
   height: 32px;
-  background-color: blue;
+  background-color: #5d50e6;
   border-radius: 50%;
   border: 0;
 `;

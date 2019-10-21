@@ -8,7 +8,7 @@ const Card = styled.div`
   width: 300px;
   margin-left: 32px;
   margin-right: 32px;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 `;
 
 const CardInner = styled.div`
@@ -81,15 +81,13 @@ const CardButton = styled.button`
   border: 0;
   background-image: linear-gradient(to right, #877eea, #5b4df2);
   padding: 8px 24px;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   color: white;
   box-shadow: 0px 5px 13px -1px rgba(0, 0, 0, 0.20);
 
   &:hover,
   &:focus {
-    background-color: #DC143C;
-    color: #eee;
     outline: none;
+    box-shadow: 0px 0px 0px 2px #3b2aeb inset;
   }
 
   &:active {

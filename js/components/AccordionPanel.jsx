@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const PanelWrapper = styled.div`
-  border-bottom: 2px solid #DC143C;
+  border-bottom: 2px solid #5b4df2;
   box-shadow: 0px 5px 13px -1px rgba(0,0,0,0.20);
 
   &:first-of-type {

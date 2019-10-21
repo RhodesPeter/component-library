@@ -7,7 +7,7 @@ const Card = styled.div`
   width: 300px;
   margin-left: 32px;
   margin-right: 32px;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
   min-height: 450px;
 `;
 
@@ -54,7 +54,7 @@ const CardInformationFront = styled.div`
   color: #444;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  border-top: 2px solid #DC143C;
+  border-top: 2px solid #5b4df2;
 `;
 
 const CardInformationBack = styled.div`
@@ -74,19 +74,19 @@ const CardParagraph = styled.p`
 `;
 
 const CardButton = styled.button`
-  border: 2px solid #DC143C;
-  background-color: white;
   margin: 0 0 0 auto;
   display: block;
-  border-radius: 3px;
-  padding: 4px 8px;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  border-radius: 16px;
+  border: 0;
+  background-image: linear-gradient(to right, #877eea, #5b4df2);
+  padding: 8px 24px;
+  color: white;
+  box-shadow: 0px 5px 13px -1px rgba(0, 0, 0, 0.20);
 
   &:hover,
   &:focus {
-    background-color: #DC143C;
-    color: #eee;
     outline: none;
+    box-shadow: 0px 0px 0px 2px #3b2aeb inset;
   }
 
   &:active {

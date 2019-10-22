@@ -8,7 +8,6 @@ const Card = styled.div`
   margin-left: 32px;
   margin-right: 32px;
   margin-bottom: 40px;
-  min-height: 450px;
 `;
 
 const CardInner = styled.div`

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import formatDate from '../scripts/formatDate';
 
 const Card = styled.div`
   width: 300px;
@@ -30,7 +31,7 @@ const CardFront = styled.div`
 
 const CardTop = styled.div`
   background-image: linear-gradient(to right, #877eea, #5b4df2);
-  padding-top: 56.25%;
+  padding: 16px 16px 40px;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
   position: relative;
@@ -53,9 +54,18 @@ const Day = styled.div`
   margin: 0 16px;
   border-bottom: 1px solid #877eea;
 
+  &:first-child {
+    padding-top: 0;
+  }
+
   &:last-child {
     border: 0;
   }
+`;
+
+const CardInnerTitle = styled.h2`
+  color: white;
+  margin-top: 0;
 `;
 
 const WeatherCard = () => (
@@ -63,7 +73,9 @@ const WeatherCard = () => (
     <CardTitle>Weather card</CardTitle>
     <CardInner>
       <CardFront>
-        <CardTop>Weather today</CardTop>
+        <CardTop>
+          <CardInnerTitle>{formatDate()}</CardInnerTitle>
+        </CardTop>
         <Day>Monday</Day>
         <Day>Tuesday</Day>
         <Day>Wednesday</Day>

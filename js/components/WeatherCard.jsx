@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import formatDate from '../scripts/formatDate';
+import getWeatherForecast from '../scripts/getWeatherForecast';
 
 const Card = styled.div`
   width: 300px;
@@ -54,7 +55,7 @@ const Day = styled.div`
   margin: 0 16px;
   border-bottom: 1px solid #877eea;
 
-  &:first-child {
+  &:first-of-type {
     padding-top: 0;
   }
 
@@ -68,7 +69,9 @@ const CardInnerTitle = styled.h2`
   margin-top: 0;
 `;
 
-const WeatherCard = () => (
+const WeatherCard = () => {
+  console.log(getWeatherForecast());
+  return (
   <Card>
     <CardTitle>Weather card</CardTitle>
     <CardInner>

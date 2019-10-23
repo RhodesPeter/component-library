@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import formatDate from '../scripts/formatDate';
 import getWeatherForecast from '../scripts/getWeatherForecast';
@@ -66,26 +66,41 @@ const Day = styled.div`
 
 const CardInnerTitle = styled.h2`
   color: white;
-  margin-top: 0;
+  margin: 0;
 `;
 
-const WeatherCard = () => {
-  console.log(getWeatherForecast());
-  return (
-  <Card>
-    <CardTitle>Weather card</CardTitle>
-    <CardInner>
-      <CardFront>
-        <CardTop>
-          <CardInnerTitle>{formatDate()}</CardInnerTitle>
-        </CardTop>
-        <Day>Monday</Day>
-        <Day>Tuesday</Day>
-        <Day>Wednesday</Day>
-        <Day>Thursday</Day>
-      </CardFront>
-    </CardInner>
-  </Card>
-);
+class WeatherCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: null,
+    };
+  }
+
+  componentDidMount() {
+    getWeatherForecast()
+      .then(data => this.setState({ data }));
+  }
+
+  render() {
+    return (
+      <Card>
+        <CardTitle>Weather card</CardTitle>
+        <CardInner>
+          <CardFront>
+            <CardTop>
+              <CardInnerTitle>{this.state.data ? this.state.data.data.name : 'Loading...'}</CardInnerTitle>
+              <CardInnerTitle>{formatDate()}</CardInnerTitle>
+            </CardTop>
+            <Day>Monday</Day>
+            <Day>Tuesday</Day>
+            <Day>Wednesday</Day>
+            <Day>Thursday</Day>
+          </CardFront>
+        </CardInner>
+      </Card>
+    );
+  }
+}
 
 export default WeatherCard;

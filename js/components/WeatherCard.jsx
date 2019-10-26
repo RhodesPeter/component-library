@@ -66,7 +66,7 @@ const Day = styled.div`
 
 const CardInnerTitle = styled.h2`
   color: white;
-  margin-top: 0;
+  margin: 0;
 `;
 
 class WeatherCard extends Component {
@@ -89,9 +89,9 @@ class WeatherCard extends Component {
         <CardInner>
           <CardFront>
             <CardTop>
+              <CardInnerTitle>{this.state.data ? this.state.data.data.name : 'Loading...'}</CardInnerTitle>
               <CardInnerTitle>{formatDate()}</CardInnerTitle>
             </CardTop>
-            <div>{ this.state.data ? this.state.data.data.name : 'Loading...' }</div>
             <Day>Monday</Day>
             <Day>Tuesday</Day>
             <Day>Wednesday</Day>

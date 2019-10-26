@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import formatDate from '../scripts/formatDate';
 import getWeatherForecast from '../scripts/getWeatherForecast';
+import formatTemp from '../scripts/formatTemp';
 
 const Card = styled.div`
   width: 300px;
@@ -54,8 +55,10 @@ const Day = styled.div`
   padding: 16px 0;
   margin: 0 16px;
   border-bottom: 1px solid #877eea;
+  display: flex;
+  justify-content: space-between;
 
-  &:first-of-type {
+  &:nth-child(2) {
     padding-top: 0;
   }
 
@@ -73,13 +76,18 @@ class WeatherCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null,
+      London: null,
+      NewYork: null,
+      Paris: null,
+      Tokyo: null,
     };
   }
 
   componentDidMount() {
-    getWeatherForecast()
-      .then(data => this.setState({ data }));
+    getWeatherForecast('London,uk').then(London => this.setState({ London }));
+    getWeatherForecast('New York,usa').then(NewYork => this.setState({ NewYork }));
+    getWeatherForecast('Paris,fr').then(Paris => this.setState({ Paris }));
+    getWeatherForecast('Tokyo,jp').then(Tokyo => this.setState({ Tokyo }));
   }
 
   render() {
@@ -89,13 +97,23 @@ class WeatherCard extends Component {
         <CardInner>
           <CardFront>
             <CardTop>
-              <CardInnerTitle>{this.state.data ? this.state.data.data.name : 'Loading...'}</CardInnerTitle>
+              <CardInnerTitle>{this.state.London ? this.state.London.data.name : 'Loading...'}</CardInnerTitle>
               <CardInnerTitle>{formatDate()}</CardInnerTitle>
+              <CardInnerTitle>{this.state.London ? this.state.London.data.weather[0].description : 'Loading...'}</CardInnerTitle>
+              <CardInnerTitle>{this.state.London ? formatTemp(this.state.London.data.main.temp) : 'Loading...'}</CardInnerTitle>
             </CardTop>
-            <Day>Monday</Day>
-            <Day>Tuesday</Day>
-            <Day>Wednesday</Day>
-            <Day>Thursday</Day>
+            <Day>
+              New York
+              <span>{this.state.NewYork ? formatTemp(this.state.NewYork.data.main.temp) : 'Loading...'}</span>
+            </Day>
+            <Day>
+              Paris
+              <span>{this.state.Paris ? formatTemp(this.state.Paris.data.main.temp) : 'Loading...'}</span>
+            </Day>
+            <Day>
+              Tokyo
+              <span>{this.state.Tokyo ? formatTemp(this.state.Tokyo.data.main.temp) : 'Loading...'}</span>
+            </Day>
           </CardFront>
         </CardInner>
       </Card>

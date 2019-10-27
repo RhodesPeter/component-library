@@ -27,12 +27,12 @@ const Homepage = () => (
   <Wrapper>
     <TopNav />
     <Components>
-      <TodoList />
+      <WeatherCard />
       <InformationCard />
       <Accordion />
       <SearchCard />
       <Carousel />
-      <WeatherCard />
+      <TodoList />
     </Components>
   </Wrapper>
 );

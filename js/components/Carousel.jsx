@@ -36,12 +36,13 @@ const MountainsImg = styled.img`
 `;
 
 const Dot = styled.button`
-  height: ${props => (props.isActive ? '24px' : '16px')};
-  width: ${props => (props.isActive ? '24px' : '16px')};
-  background-color: #877eea;
+  height: ${props => (props.isActive ? '16px' : '12px')};
+  width: ${props => (props.isActive ? '16px' : '12px')};
   border-radius: 50%;
-  margin-right: 8px;
-  border: none;
+  margin-right: 6px;
+  border: 2px solid #877eea;
+  padding: 0;
+  background-color: ${props => (props.isActive ? '#877eea' : '#fff')};
 
   &:last-of-type {
       margin-right: 0;
@@ -51,8 +52,25 @@ const Dot = styled.button`
 const ImageNav = styled.nav`
   align-items: center;
   display: flex;
-  justify-content: center;
   padding: 16px;
+  justify-content: space-between;
+`;
+
+const NavIconsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const NavButton = styled.button`
+  background-color: #5b4df2;
+  border: 0;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: #fff;
 `;
 
 class SearchCard extends Component {
@@ -77,11 +95,15 @@ class SearchCard extends Component {
           <CardFront>
             <MountainsImg alt="" src="../../public/assets/mountains.jpg" />
             <ImageNav>
-              <Dot onClick={this.handleClick} />
-              <Dot onClick={this.handleClick} />
-              <Dot onClick={this.handleClick} isActive />
-              <Dot onClick={this.handleClick} />
-              <Dot onClick={this.handleClick} />
+              <NavButton>&larr;</NavButton>
+              <NavIconsWrapper>
+                <Dot onClick={this.handleClick} isActive />
+                <Dot onClick={this.handleClick} />
+                <Dot onClick={this.handleClick} />
+                <Dot onClick={this.handleClick} />
+                <Dot onClick={this.handleClick} />
+              </NavIconsWrapper>
+              <NavButton>&rarr;</NavButton>
             </ImageNav>
           </CardFront>
         </CardInner>

@@ -36,13 +36,14 @@ const MountainsImg = styled.img`
 `;
 
 const Dot = styled.button`
-  height: ${props => (props.isActive ? '16px' : '12px')};
-  width: ${props => (props.isActive ? '16px' : '12px')};
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
   margin-right: 6px;
   border: 2px solid #877eea;
   padding: 0;
   background-color: ${props => (props.isActive ? '#877eea' : '#fff')};
+  outline: none;
 
   &:last-of-type {
       margin-right: 0;
@@ -65,26 +66,33 @@ const NavButton = styled.button`
   background-color: #5b4df2;
   border: 0;
   border-radius: 50%;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   color: #fff;
 `;
+
+const images = [
+  '../../public/assets/mountains1.jpg',
+  '../../public/assets/mountains2.jpg',
+  '../../public/assets/mountains3.jpg',
+  '../../public/assets/mountains4.jpg',
+  '../../public/assets/mountains5.jpg',
+];
 
 class SearchCard extends Component {
   constructor(...args) {
     super(...args);
     this.handleClick = this.handleClick.bind(this);
     this.state = {
-      activeDot: 2,
+      imageVisible: 0,
     };
   }
 
   handleClick(event) {
-    console.log(event);
-    this.setState({ activeDot: 1 });
+    this.setState({ imageVisible: +event.target.getAttribute('data-dot-num') });
   }
 
   render() {
@@ -93,15 +101,17 @@ class SearchCard extends Component {
         <CardTitle>Carousel</CardTitle>
         <CardInner>
           <CardFront>
-            <MountainsImg alt="" src="../../public/assets/mountains.jpg" />
+            <MountainsImg alt="" src={images[this.state.imageVisible]} />
             <ImageNav>
               <NavButton>&larr;</NavButton>
               <NavIconsWrapper>
-                <Dot onClick={this.handleClick} isActive />
-                <Dot onClick={this.handleClick} />
-                <Dot onClick={this.handleClick} />
-                <Dot onClick={this.handleClick} />
-                <Dot onClick={this.handleClick} />
+                {images.map((src, i) => (
+                  <Dot
+                    data-dot-num={i}
+                    isActive={this.state.imageVisible === i}
+                    key={src}
+                    onClick={this.handleClick}
+                  />))}
               </NavIconsWrapper>
               <NavButton>&rarr;</NavButton>
             </ImageNav>

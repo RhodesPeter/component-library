@@ -48,6 +48,10 @@ const Dot = styled.button`
   &:last-of-type {
       margin-right: 0;
   }
+
+  &:hover {
+    border-color: #5b4df2;
+  }
 `;
 
 const ImageNav = styled.nav`
@@ -63,8 +67,8 @@ const NavIconsWrapper = styled.div`
 `;
 
 const NavButton = styled.button`
-  background-color: #5b4df2;
-  border: 0;
+  background-color: #877eea;
+  border: 2px solid #877eea;
   border-radius: 50%;
   font-size: 18px;
   font-weight: bold;
@@ -72,6 +76,11 @@ const NavButton = styled.button`
   height: 32px;
   padding: 0;
   color: #fff;
+  outline: none;
+
+  &:hover {
+    border-color: #5b4df2;
+  }
 `;
 
 const images = [
@@ -86,6 +95,8 @@ class SearchCard extends Component {
   constructor(...args) {
     super(...args);
     this.handleClick = this.handleClick.bind(this);
+    this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
+    this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
     this.state = {
       imageVisible: 0,
     };
@@ -93,6 +104,18 @@ class SearchCard extends Component {
 
   handleClick(event) {
     this.setState({ imageVisible: +event.target.getAttribute('data-dot-num') });
+  }
+
+  handleLeftArrowClick() {
+    const current = this.state.imageVisible;
+    const newCount = current >= 1 ? current - 1 : images.length - 1;
+    this.setState({ imageVisible: newCount });
+  }
+
+  handleRightArrowClick() {
+    const current = this.state.imageVisible;
+    const newCount = current < images.length - 1 ? current + 1 : 0;
+    this.setState({ imageVisible: newCount });
   }
 
   render() {
@@ -103,7 +126,7 @@ class SearchCard extends Component {
           <CardFront>
             <MountainsImg alt="" src={images[this.state.imageVisible]} />
             <ImageNav>
-              <NavButton>&larr;</NavButton>
+              <NavButton onClick={this.handleLeftArrowClick}>&larr;</NavButton>
               <NavIconsWrapper>
                 {images.map((src, i) => (
                   <Dot
@@ -113,7 +136,7 @@ class SearchCard extends Component {
                     onClick={this.handleClick}
                   />))}
               </NavIconsWrapper>
-              <NavButton>&rarr;</NavButton>
+              <NavButton onClick={this.handleRightArrowClick}>&rarr;</NavButton>
             </ImageNav>
           </CardFront>
         </CardInner>

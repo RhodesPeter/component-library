@@ -16,6 +16,9 @@ const PanelWrapper = styled.div`
   &:last-of-type {
     border: 0;
 
+    border-bottom-right-radius: ${props => (props.isOpen ? '0' : '3px')};
+    border-bottom-left-radius: ${props => (props.isOpen ? '0' : '3px')};
+
     Button {
       border-bottom-right-radius: ${props => (props.isOpen ? '0' : '3px')};
       border-bottom-left-radius: ${props => (props.isOpen ? '0' : '3px')};
@@ -24,8 +27,8 @@ const PanelWrapper = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: ${props => (props.isOpen ? '#ccc' : '#eee')};
-  color: #444;
+  background-color: ${props => (props.isOpen ? '#877eea' : 'white')};
+  color: ${props => (props.isOpen ? 'white' : '#444')};
   cursor: pointer;
   padding: 16px;
   width: 100%;
@@ -38,7 +41,8 @@ const Button = styled.button`
 
   &:hover,
   &:focus {
-    background-color: #ccc;
+    background-color: #877eea;
+    color: white;
   }
 
   &:after {

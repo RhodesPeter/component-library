@@ -56,7 +56,6 @@ const CardInformationFront = styled.div`
 `;
 
 const CardInformationBack = styled.div`
-  background-color: #eee;
   padding: 16px;
   font-size: 15px;
   color: #444;

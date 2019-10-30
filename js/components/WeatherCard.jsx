@@ -98,7 +98,6 @@ const Deg = styled.p`
   margin-top: 16px;
   font-weight: 200;
   position: relative;
-  left: -4px;
 `;
 
 class WeatherCard extends Component {

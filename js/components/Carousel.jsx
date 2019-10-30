@@ -36,8 +36,8 @@ const MountainsImg = styled.img`
 `;
 
 const Dot = styled.button`
-  height: 12px;
-  width: 12px;
+  height: 10px;
+  width: 10px;
   border-radius: 50%;
   margin-right: 6px;
   border: 2px solid #877eea;
@@ -67,7 +67,36 @@ const NavIconsWrapper = styled.div`
   align-items: center;
 `;
 
-const CardBottom = styles...
+const CardBottom = styled.div`
+  padding: 16px;
+`;
+
+const CardInnerTitle = styled.h3`
+  margin-top: 0;
+`;
+
+// const Buttonwrapper = styled.div`
+//   display: flex;
+// `;
+
+// const PageButtons = styled.button`
+//   flex: 1;
+//   background-color: #877eea;
+//   border: 0;
+//   padding: 16px;
+//   font-size: 32px;
+//   color: white;
+
+//   &:first-child {
+//     border-bottom-left-radius: 3px;
+//     border-right: 1px solid white;
+//   }
+
+//   &:last-child {
+//     border-bottom-right-radius: 3px;
+//     border-left: 1px solid white;
+//   }
+// `;
 
 // const NavButton = styled.button`
 //   background-color: #877eea;
@@ -140,7 +169,7 @@ class SearchCard extends Component {
               </NavIconsWrapper>
             </ImageNav>
             <CardBottom>
-              <h2>Image title</h2>
+              <CardInnerTitle>Image title</CardInnerTitle>
               <p>Image description description description description description description</p>
             </CardBottom>
           </CardFront>
@@ -152,5 +181,9 @@ class SearchCard extends Component {
 
 /* <NavButton onClick={this.handleLeftArrowClick}>&larr;</NavButton> */
 /* <NavButton onClick={this.handleRightArrowClick}>&rarr;</NavButton> */
+/* <Buttonwrapper>
+  <PageButtons onClick={this.handleLeftArrowClick}>&larr;</PageButtons>
+  <PageButtons onClick={this.handleRightArrowClick}>&rarr;</PageButtons>
+</Buttonwrapper> */
 
 export default SearchCard;

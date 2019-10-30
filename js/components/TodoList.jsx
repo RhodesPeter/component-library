@@ -16,6 +16,10 @@ const TodoCard = styled.div`
   color: #444;
   font-size: 15px;
   padding: 16px;
+
+  ul {
+    margin-bottom: 0;
+  }
 `;
 
 const CardTitle = styled.h2`
@@ -32,6 +36,10 @@ const AddItemButton = styled.button`
   background-color: #5d50e6;
   border-radius: 50%;
   border: 0;
+  transition: transform 0.5s ease;
+  transform: rotate(45deg);
+  transform: ${props => (props.isOpen === true ? 'rotate(45deg)' : 'rotate(0)')};
+  outline: none;
 `;
 
 const TopWrapper = styled.div`
@@ -60,7 +68,7 @@ const TaskCount = styled.p`
 
 const InputWrapper = styled.div`
   position: relative;
-  min-height: ${props => (props.active ? '40px' : '0')};
+  min-height: ${props => (props.active ? '47px' : '0')};
   height: 0;
   overflow: hidden;
   transition: min-height 400ms cubic-bezier(0.465, -0.085, 0.390, 1.395);
@@ -68,11 +76,13 @@ const InputWrapper = styled.div`
 
 const AddTaskButton = styled.button`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 7px;
+  right: 6px;
   border: 0;
   background-image: linear-gradient(to right, #877eea, #5b4df2);
   color: white;
+  border-radius: 16px;
+  padding: 8px 24px;
 `;
 
 const taskCount = tasks => `${tasks.length} ${tasks.length !== 1 ? 'tasks' : 'task'}`;
@@ -97,7 +107,7 @@ class TodoList extends Component {
   }
 
   handleAddItemClick() {
-    this.setState({ inputActive: true });
+    this.setState({ inputActive: !this.state.inputActive });
   }
 
   handleAddTaskClick() {
@@ -119,8 +129,8 @@ class TodoList extends Component {
         <CardTitle>To-Do List</CardTitle>
         <TodoCard>
           <TopWrapper>
-            <Date>{ formatDate() }</Date>
-            <AddItemButton onClick={this.handleAddItemClick} />
+            <Date>{formatDate()}</Date>
+            <AddItemButton isOpen={this.state.inputActive} onClick={this.handleAddItemClick} />
           </TopWrapper>
           <TaskCount>{taskCount(this.state.tasks)}</TaskCount>
           <InputWrapper active={this.state.inputActive}>

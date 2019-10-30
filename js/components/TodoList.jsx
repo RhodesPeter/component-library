@@ -11,7 +11,6 @@ const TodoWrapper = styled.div`
 `;
 
 const TodoCard = styled.div`
-  background-color: #eee;
   border-radius: 3px;
   box-shadow: 0px 5px 13px -1px rgba(0,0,0,0.20);
   color: #444;
@@ -46,7 +45,7 @@ const Date = styled.h3`
 `;
 
 const TodoInput = styled.input`
-  border: 0;
+  border: 2px solid #5b4df2;
   display: block;
   width: 100%;
   margin-bottom: ${props => (props.active ? '16px' : '0')};
@@ -72,7 +71,7 @@ const AddTaskButton = styled.button`
   top: 10px;
   right: 10px;
   border: 0;
-  background-color: green;
+  background-image: linear-gradient(to right, #877eea, #5b4df2);
   color: white;
 `;
 

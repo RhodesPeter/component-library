@@ -21,6 +21,7 @@ const CardTitle = styled.h2`
 const CardInner = styled.div`
   position: relative;
   box-shadow: 0px 5px 13px -1px rgba(0,0,0,0.20);
+  border-radius: 3px;
 `;
 
 const CardFront = styled.div`
@@ -97,7 +98,7 @@ const Deg = styled.p`
   margin-top: 16px;
   font-weight: 200;
   position: relative;
-  left: -8px;
+  left: -4px;
 `;
 
 class WeatherCard extends Component {

@@ -11,6 +11,7 @@ const Card = styled.div`
 const CardInner = styled.div`
   position: relative;
   box-shadow: 0px 5px 13px -1px rgba(0,0,0,0.20);
+  border-radius: 3px;
 `;
 
 const CardTitle = styled.h2`
@@ -21,7 +22,6 @@ const CardTitle = styled.h2`
 `;
 
 const CardFront = styled.div`
-  background-color: #eee;
   padding: 0;
   font-size: 15px;
   color: #444;
@@ -49,7 +49,8 @@ const Dot = styled.button`
       margin-right: 0;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     border-color: #5b4df2;
   }
 `;
@@ -57,8 +58,8 @@ const Dot = styled.button`
 const ImageNav = styled.nav`
   align-items: center;
   display: flex;
-  padding: 16px;
-  justify-content: space-between;
+  padding: 8px 16px;
+  justify-content: center;
 `;
 
 const NavIconsWrapper = styled.div`
@@ -66,22 +67,24 @@ const NavIconsWrapper = styled.div`
   align-items: center;
 `;
 
-const NavButton = styled.button`
-  background-color: #877eea;
-  border: 2px solid #877eea;
-  border-radius: 50%;
-  font-size: 18px;
-  font-weight: bold;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  color: #fff;
-  outline: none;
+const CardBottom = styles...
 
-  &:hover {
-    border-color: #5b4df2;
-  }
-`;
+// const NavButton = styled.button`
+//   background-color: #877eea;
+//   border: 2px solid #877eea;
+//   border-radius: 50%;
+//   font-size: 18px;
+//   font-weight: bold;
+//   width: 32px;
+//   height: 32px;
+//   padding: 0;
+//   color: #fff;
+//   outline: none;
+
+//   &:hover {
+//     border-color: #5b4df2;
+//   }
+// `;
 
 const images = [
   '../../public/assets/mountains1.jpg',
@@ -126,7 +129,6 @@ class SearchCard extends Component {
           <CardFront>
             <MountainsImg alt="" src={images[this.state.imageVisible]} />
             <ImageNav>
-              <NavButton onClick={this.handleLeftArrowClick}>&larr;</NavButton>
               <NavIconsWrapper>
                 {images.map((src, i) => (
                   <Dot
@@ -136,13 +138,19 @@ class SearchCard extends Component {
                     onClick={this.handleClick}
                   />))}
               </NavIconsWrapper>
-              <NavButton onClick={this.handleRightArrowClick}>&rarr;</NavButton>
             </ImageNav>
+            <CardBottom>
+              <h2>Image title</h2>
+              <p>Image description description description description description description</p>
+            </CardBottom>
           </CardFront>
         </CardInner>
       </Card>
     );
   }
 }
+
+/* <NavButton onClick={this.handleLeftArrowClick}>&larr;</NavButton> */
+/* <NavButton onClick={this.handleRightArrowClick}>&rarr;</NavButton> */
 
 export default SearchCard;

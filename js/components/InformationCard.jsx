@@ -47,7 +47,6 @@ const MountainsImg = styled.img`
 `;
 
 const CardInformationFront = styled.div`
-  background-color: #eee;
   padding: 16px;
   font-size: 15px;
   color: #444;

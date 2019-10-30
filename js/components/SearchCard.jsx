@@ -17,6 +17,7 @@ const CardInner = styled.div`
   transform-style: preserve-3d;
   transform: ${props => (props.isFlipped ? 'rotateY(180deg)' : 'rotateY(0)')};
   box-shadow: 0px 5px 13px -1px rgba(0,0,0,0.20);
+  border-radius: 3px;
 `;
 
 const CardTitle = styled.h2`

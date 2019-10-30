@@ -112,7 +112,7 @@ class InformationCard extends Component {
         <CardTitle>Information Card</CardTitle>
         <CardInner isFlipped={this.state.cardFlipped}>
           <CardBodyFront>
-            <MountainsImg alt="" src="../../public/assets/mountains.jpg" />
+            <MountainsImg alt="" src="../../public/assets/mountains1.jpg" />
             <CardInformationFront>
               <CardHeader>Lorem Ipsum</CardHeader>
               <CardParagraph>

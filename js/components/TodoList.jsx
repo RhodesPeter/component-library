@@ -29,7 +29,9 @@ const TodoCard = styled.div`
     background-color: #eee;
     position: relative;
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
       button {
         opacity: 1;
       }
@@ -81,7 +83,7 @@ const TaskCount = styled.p`
   margin-top: 0;
 `;
 
-const InputWrapper = styled.div`
+const InputWrapper = styled.form`
   position: relative;
   min-height: ${props => (props.active ? '47px' : '0')};
   height: 0;
@@ -104,7 +106,7 @@ const AddTaskButton = styled.button`
 const BinButton = styled.button`
   width: 24px;
   height: 24px;
-  background: url('../../public/assets/trash-bin.png') no-repeat center/contain;
+  background: url('../../public/assets/trash-bin.png') no-repeat center/130%;
   border: 0;
   padding: 0;
   position: absolute;
@@ -113,6 +115,31 @@ const BinButton = styled.button`
   opacity: 0;
   transition: opacity 0.5s;
   outline: none;
+`;
+
+const TickButton = styled.button`
+  width: 24px;
+  height: 24px;
+  background: url('../../public/assets/tick.png') no-repeat center/contain;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  right: 48px;
+  top: 12px;
+  opacity: 0;
+  transition: opacity 0.5s;
+  outline: none;
+`;
+
+const TaskLi = styled.li`
+  transition: box-shadow 0.3s;
+  outline: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: 0px 0px 0px 2px #877eea inset;
+  }
 `;
 
 const taskCount = tasks => `${tasks.length} ${tasks.length !== 1 ? 'tasks' : 'task'}`;
@@ -124,18 +151,22 @@ class TodoList extends Component {
     this.handleAddTaskClick = this.handleAddTaskClick.bind(this);
     this.updateInputValue = this.updateInputValue.bind(this);
     this.removeItem = this.removeItem.bind(this);
+    this.strikeItem = this.strikeItem.bind(this);
     this.state = {
       inputActive: false,
       inputValue: '',
       tasks: [{
         name: 'Eat breakfast',
         id: 0,
+        completed: false,
       }, {
         name: 'Eat lunch',
         id: 1,
+        completed: false,
       }, {
         name: 'Eat dinner',
         id: 3,
+        completed: false,
       }],
     };
   }
@@ -144,9 +175,11 @@ class TodoList extends Component {
     this.setState({ inputActive: !this.state.inputActive });
   }
 
-  handleAddTaskClick() {
+  handleAddTaskClick(event) {
     const key = getTime();
     const value = this.state.inputValue;
+
+    event.preventDefault();
 
     if (value.length > 0) {
       this.setState({ tasks: [...this.state.tasks, { name: value, id: key }] });
@@ -160,6 +193,20 @@ class TodoList extends Component {
   removeItem(event) {
     const taskId = +event.target.getAttribute('data-task-id');
     this.setState({ tasks: this.state.tasks.filter(task => task.id !== taskId) });
+  }
+
+  strikeItem(event) {
+    const taskId = +event.target.getAttribute('data-task-id');
+    const newTasks = this.state.tasks.map((cur) => {
+      if (cur.id === taskId) {
+        const copy = Object.assign({}, cur);
+        copy.completed = !copy.completed;
+        return copy;
+      }
+      return cur;
+    });
+
+    this.setState({ tasks: newTasks });
   }
 
   render() {
@@ -182,10 +229,11 @@ class TodoList extends Component {
           </InputWrapper>
           <ul>
             { this.state.tasks.map(task => (
-              <li key={task.id}>
-                { task.name }
+              <TaskLi key={task.id} tabIndex="0">
+                { task.completed ? <s>{task.name}</s> : task.name }
                 <BinButton data-task-id={task.id} onClick={this.removeItem} />
-              </li>
+                <TickButton data-task-id={task.id} onClick={this.strikeItem} />
+              </TaskLi>
             )) }
           </ul>
         </TodoCard>

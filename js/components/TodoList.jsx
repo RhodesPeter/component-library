@@ -23,12 +23,6 @@ const TodoCard = styled.div`
   }
 
   li {
-    padding: 16px;
-    list-style: none;
-    margin-bottom: 4px;
-    background-color: #eee;
-    position: relative;
-
     &:hover,
     &:focus,
     &:active {
@@ -57,6 +51,11 @@ const AddItemButton = styled.button`
   transform: rotate(45deg);
   transform: ${props => (props.isOpen === true ? 'rotate(45deg)' : 'rotate(0)')};
   outline: none;
+
+  &:focus,
+  &:hover {
+    box-shadow: 0px 0px 0px 2px #3b2aeb inset;
+  }
 `;
 
 const TopWrapper = styled.div`
@@ -74,7 +73,7 @@ const TodoInput = styled.input`
   display: block;
   width: 100%;
   margin-bottom: ${props => (props.active ? '16px' : '0')};
-  padding: 0 8px;
+  padding: 0 123px 0 8px;
   outline: none;
   height: 100%;
 `;
@@ -101,6 +100,12 @@ const AddTaskButton = styled.button`
   color: white;
   border-radius: 16px;
   padding: 8px 24px;
+  outline: none;
+
+  &:focus,
+  &:hover {
+    box-shadow: 0px 0px 0px 2px #3b2aeb inset;
+  }
 `;
 
 const BinButton = styled.button`
@@ -115,6 +120,10 @@ const BinButton = styled.button`
   opacity: 0;
   transition: opacity 0.5s;
   outline: none;
+
+  &:focus {
+    opacity: 1;
+  }
 `;
 
 const TickButton = styled.button`
@@ -129,11 +138,21 @@ const TickButton = styled.button`
   opacity: 0;
   transition: opacity 0.5s;
   outline: none;
+
+  &:focus {
+    opacity: 1;
+  }
 `;
 
 const TaskLi = styled.li`
   transition: box-shadow 0.3s;
   outline: none;
+  padding: 16px 80px 16px 16px;
+  list-style: none;
+  margin-bottom: 4px;
+  background-color: #eee;
+  position: relative;
+  word-break: break-word;
 
   &:hover,
   &:focus,
@@ -156,15 +175,15 @@ class TodoList extends Component {
       inputActive: false,
       inputValue: '',
       tasks: [{
-        name: 'Eat breakfast',
+        name: 'Learn Javascript',
         id: 0,
-        completed: false,
+        completed: true,
       }, {
-        name: 'Eat lunch',
+        name: 'Learn CSS',
         id: 1,
-        completed: false,
+        completed: true,
       }, {
-        name: 'Eat dinner',
+        name: 'Learn C++',
         id: 3,
         completed: false,
       }],
@@ -229,10 +248,10 @@ class TodoList extends Component {
           </InputWrapper>
           <ul>
             { this.state.tasks.map(task => (
-              <TaskLi key={task.id} tabIndex="0">
+              <TaskLi key={task.id}>
                 { task.completed ? <s>{task.name}</s> : task.name }
-                <BinButton data-task-id={task.id} onClick={this.removeItem} />
                 <TickButton data-task-id={task.id} onClick={this.strikeItem} />
+                <BinButton data-task-id={task.id} onClick={this.removeItem} />
               </TaskLi>
             )) }
           </ul>

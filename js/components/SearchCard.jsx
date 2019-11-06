@@ -28,7 +28,6 @@ const CardTitle = styled.h2`
 `;
 
 const CardInformationFront = styled.div`
-  background-color: #eee;
   padding: 16px;
   font-size: 15px;
   color: #444;
@@ -37,11 +36,10 @@ const CardInformationFront = styled.div`
 
 const SearchInput = styled.input`
   margin-bottom: 0;
-  padding-bottom: 8px;
-  background-color: #eee;
+  padding: 12px;
   border: 0;
   width: 100%;
-  border-bottom: 2px solid #E0E0E0;
+  border: 2px solid #5b4df2;
 `;
 
 const Checkbox = styled.input`

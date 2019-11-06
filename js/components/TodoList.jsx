@@ -21,16 +21,6 @@ const TodoCard = styled.div`
     margin: 0;
     padding: 0;
   }
-
-  li {
-    &:hover,
-    &:focus,
-    &:active {
-      button {
-        opacity: 1;
-      }
-    }
-  }
 `;
 
 const CardTitle = styled.h2`
@@ -115,14 +105,19 @@ const BinButton = styled.button`
   border: 0;
   padding: 0;
   position: absolute;
-  right: 16px;
+  right: 0;
   top: 12px;
   opacity: 0;
-  transition: opacity 0.5s;
+  transition: opacity 0.7s;
   outline: none;
 
   &:focus {
     opacity: 1;
+
+    ~ div {
+      box-shadow: 0px 0px 0px 2px #877eea inset;
+      max-width: calc(100% - 64px);
+    }
   }
 `;
 
@@ -133,7 +128,7 @@ const TickButton = styled.button`
   border: 0;
   padding: 0;
   position: absolute;
-  right: 48px;
+  right: 32px;
   top: 12px;
   opacity: 0;
   transition: opacity 0.5s;
@@ -141,10 +136,51 @@ const TickButton = styled.button`
 
   &:focus {
     opacity: 1;
+
+    ~ div {
+      box-shadow: 0px 0px 0px 2px #877eea inset;
+      max-width: calc(100% - 64px);
+    }
   }
 `;
 
 const TaskLi = styled.li`
+  list-style: none;
+  position: relative;
+
+  &:hover,
+  &:focus,
+  &:active {
+    div {
+      max-width: calc(100% - 64px);
+      box-shadow: 0px 0px 0px 2px #877eea inset;
+    }
+
+    button {
+      opacity: 1;
+    }
+  }
+
+  div {
+    transition: box-shadow 0.3s, max-width 0.4s ease;
+    outline: none;
+    padding: 16px;
+    list-style: none;
+    margin-bottom: 4px;
+    background-color: #eee;
+    position: relative;
+    word-break: break-word;
+    max-width: 100%;
+
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: 0px 0px 0px 2px #877eea inset;
+    }
+  }
+}`;
+
+const TaskTile = styled.div`
   transition: box-shadow 0.3s;
   outline: none;
   padding: 16px 80px 16px 16px;
@@ -159,6 +195,18 @@ const TaskLi = styled.li`
   &:active {
     box-shadow: 0px 0px 0px 2px #877eea inset;
   }
+`;
+
+const VisuallyHidden = styled.span`
+  position: absolute;
+  height: 1px; 
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+`;
+
+const Strike = styled.s`
+  text-decoration-color: #5b4df2;
 `;
 
 const taskCount = tasks => `${tasks.length} ${tasks.length !== 1 ? 'tasks' : 'task'}`;
@@ -235,7 +283,9 @@ class TodoList extends Component {
         <TodoCard>
           <TopWrapper>
             <Date>{formatDate()}</Date>
-            <AddItemButton isOpen={this.state.inputActive} onClick={this.handleAddItemClick} />
+            <AddItemButton isOpen={this.state.inputActive} onClick={this.handleAddItemClick}>
+              <VisuallyHidden>{this.state.inputActive ? 'hide text input' : 'display text input'}</VisuallyHidden>
+            </AddItemButton>
           </TopWrapper>
           <TaskCount>{taskCount(this.state.tasks)}</TaskCount>
           <InputWrapper active={this.state.inputActive}>
@@ -249,9 +299,13 @@ class TodoList extends Component {
           <ul>
             { this.state.tasks.map(task => (
               <TaskLi key={task.id}>
-                { task.completed ? <s>{task.name}</s> : task.name }
-                <TickButton data-task-id={task.id} onClick={this.strikeItem} />
-                <BinButton data-task-id={task.id} onClick={this.removeItem} />
+                <TickButton data-task-id={task.id} onClick={this.strikeItem}>
+                  <VisuallyHidden>{task.completed ? 'Mark task as not completed' : 'Mark task as completed'}</VisuallyHidden>
+                </TickButton>
+                <BinButton data-task-id={task.id} onClick={this.removeItem}>
+                  <VisuallyHidden>Delete task</VisuallyHidden>
+                </BinButton>
+                <TaskTile>{ task.completed ? <Strike>{task.name}</Strike> : task.name }</TaskTile>
               </TaskLi>
             )) }
           </ul>
